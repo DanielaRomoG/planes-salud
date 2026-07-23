@@ -264,17 +264,39 @@ Quedo atento/a a la asesoría.`;
                     "Igualmente se abrirá WhatsApp para continuar."
                 );
 
-            } else {
+                     } else {
 
-                envioCorrecto = true;
+                    envioCorrecto = true;
 
-                console.log(
-                    "Datos enviados correctamente a HubSpot.",
-                    respuestaHubSpot.status,
-                    respuestaTexto
-                );
+                    console.log(
+                        "Datos enviados correctamente a HubSpot.",
+                        respuestaHubSpot.status,
+                        respuestaTexto
+                    );
 
-            }
+                    /* ==============================================
+                       REGISTRAR CONVERSIÓN EN GOOGLE ADS
+                    ============================================== */
+
+                    if (typeof gtag === "function") {
+
+                        gtag("event", "conversion", {
+                            send_to: "AW-798185802/q_v6CJS969EcEMqyzfwC"
+                        });
+
+                        console.log(
+                            "Conversión enviada a Google Ads."
+                        );
+
+                    } else {
+
+                        console.error(
+                            "No se encontró la función gtag."
+                        );
+
+                    }
+
+                }
 
         } catch (error) {
 
